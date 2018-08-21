@@ -178,6 +178,14 @@ $('#form-content').trumbowyg({
             <button id="disable-disabled-textarea">Disable</button>
 
             <div id="dynamic-iframe-example"></div>
+
+            <div id="text-tag">
+                <h2>This is tag plugin</h2>
+            </div>
+
+            <div id="colors">
+                <h2>This is colors plugin</h2>
+            </div>
         </div>
 
         <div class="dark-section">
@@ -205,6 +213,7 @@ $('#form-content').trumbowyg({
         <script src="/dist/plugins/preformatted/trumbowyg.preformatted.js"></script>
         <script src="/dist/plugins/ruby/trumbowyg.ruby.js"></script>
         <script src="/dist/plugins/upload/trumbowyg.upload.js"></script>
+        <script src="/dist/plugins/tag/trumbowyg.tag.js"></script>
         <script>
             $(document).on('keydown', function (e) {
                 if (e.which === 27) {
@@ -419,6 +428,18 @@ $('#form-content').trumbowyg({
             .on('tbwblur', function(){
                 console.log('blur event fired');
             });
+
+            /** Text background color **/
+            $('#text-tag')
+                .trumbowyg({
+                    btns: ['greenTag', 'grayTag', 'removeTag']
+                });
+
+            /** Colors **/
+            $('#colors')
+                .trumbowyg({
+                    btns: ['foreColor', 'backColor']
+                });
         </script>
     </body>
 </html>
