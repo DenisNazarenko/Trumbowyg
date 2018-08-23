@@ -3,41 +3,25 @@
 
     var defaultOptions = {};
 
-    function hex(x) {
-        return ('0' + parseInt(x).toString(16)).slice(-2);
-    }
-
-    function colorToHex(rgb) {
-        if (rgb.search('rgb') === -1) {
-            return rgb.replace('#', '');
-        } else if (rgb === 'rgba(0, 0, 0, 0)') {
-            return 'transparent';
-        } else {
-            rgb = rgb.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+))?\)$/);
-            return hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
-        }
-    }
-
     // Gray tag button definition
     function grayTagBtnDef (trumbowyg) {
         return {
             fn: 'backColor',
             forceCss: true,
             hasIcon: false,
-            style: 'background-color: #CCCCCC;',
+            param: '#CCCCCC',
             text: trumbowyg.lang.highlight,
-            value: '#CCCCCC'
         };
     }
     
     // Green tag button definition
     function greenTagBtnDef (trumbowyg) {
         return {
+            fn: 'backColor',
             forceCss: true,
             hasIcon: false,
-            style: 'background-color: #AFCD29;',
+            param: '#AFCD29',
             text: trumbowyg.lang.highlight,
-            value: '#AFCD29'
         };
     }
 
@@ -48,22 +32,6 @@
             hasIcon: false,
             text: trumbowyg.lang.cancel
         };
-    }
-
-    function backgroundTagHandler (element, trumbowyg) {
-        var tags = [];
-
-        if (!element.style) {
-            return tags;
-        }
-
-        // background color
-        if (element.style.backgroundColor !== '') {
-            var backColor = colorToHex(element.style.backgroundColor);
-            tags.push('backColor' + backColor);
-        }
-
-        return tags;
     }
 
     $.extend(true, $.trumbowyg, {
@@ -88,8 +56,7 @@
                     trumbowyg.addBtnDef('grayTag', grayTagBtnDef(trumbowyg));
                     trumbowyg.addBtnDef('greenTag', greenTagBtnDef(trumbowyg));
                     trumbowyg.addBtnDef('removeTag', removeTagBtnDef(trumbowyg));
-                },
-                tagHandler: backgroundTagHandler
+                }
             }
         }
     });
